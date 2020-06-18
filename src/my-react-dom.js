@@ -1,9 +1,9 @@
 import MyReact from "./my-react";
 import * as snabbdom from "snabbdom";
 import propsModule from "snabbdom/modules/props";
+import eventlistenersModule from "snabbdom/modules/eventlisteners";
 
-// propsModule -> this helps in patching text attributes
-const reconcile = snabbdom.init([propsModule]);
+const reconcile = snabbdom.init([propsModule, eventlistenersModule]);
 
 // 缓存VDOM
 let rootVNode = null;
@@ -15,8 +15,6 @@ const render = (el, rootDomElement) => {
   }
   rootVNode = reconcile(rootVNode, el);
 };
-
-console.log(MyReact);
 
 // MyReactDOM 告知React 如何更新DOM
 MyReact.__updater = componentInstance => {

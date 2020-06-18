@@ -9,11 +9,11 @@ export default class Counter extends MyReact.Component {
       count: 0
     };
     // update the count every second
-    setInterval(() => {
-      this.setState({
-        count: this.state.count + 1
-      });
-    }, 1000);
+    // setInterval(() => {
+    //   this.setState({
+    //     count: this.state.count + 1
+    //   });
+    // }, 1000);
   }
 
   componentDidMount() {
@@ -21,6 +21,19 @@ export default class Counter extends MyReact.Component {
   }
 
   render() {
-    return <p>Count: {this.state.count}</p>;
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button
+          onClick={() => {
+            this.setState({
+              count: this.state.count + 1
+            });
+          }}
+        >
+          Increment
+        </button>
+      </div>
+    );
   }
 }
