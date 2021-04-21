@@ -1,2 +1,3 @@
-原文: [Build your own React in 90 lines of JavaScript](https://dev.to/ameerthehacker/build-your-own-react-in-90-lines-of-javascript-1je2)
-译文: [90行代码实现React](https://www.notion.so/byzhang/90-React-7475922857a24379959778077be8db81)
+## Implement My React
+
+[90行代码实现React](https://www.notion.so/90-React-361f5125b8a44569819a110ff9f0b5db)
