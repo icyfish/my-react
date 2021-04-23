@@ -20,8 +20,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "normalize.css": "^8.0.0",
-    "snabbdom": "^0.7.4"
+    "normalize.css": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
