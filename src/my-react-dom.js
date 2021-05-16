@@ -1,24 +1,46 @@
 // my-react-dom.js
 
+function commitRoot() {
+  commitWork(wipRoot.child);
+  wipRoot = null;
+}
+
+function commitWork(fiber) {
+  if (!fiber) return;
+
+  const domParent = fiber.parent.dom;
+  domParent.appendChild(fiber.dom);
+  commitWork(fiber.child);
+  commitWork(fiber.sibling);
+}
+
 function render(element, container) {
-  nextUnitOfWork = {
+  wipRoot = {
     dom: container,
     props: {
       children: [element],
     },
   };
+
+  nextUnitOfWork = wipRoot;
 }
 
 // 存储下一个需要被处理的单元
 
 let nextUnitOfWork = null;
+let wipRoot = null;
 
 function workLoop(deadline) {
-  let shouldYield = false; // 暂停当前渲染的 flag
+  let shouldYield = false; // 暂停当前执行单元的 flag
   while (nextUnitOfWork && !shouldYield) {
     nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
     shouldYield = deadline.timeRemaining() < 1;
   }
+
+  if (!nextUnitOfWork && wipRoot) {
+    commitRoot();
+  }
+
   requestIdleCallback(workLoop);
 }
 
@@ -30,11 +52,6 @@ requestIdleCallback(workLoop);
 function performUnitOfWork(fiber) {
   if (!fiber.dom) {
     fiber.dom = createDOM(fiber);
-  }
-  
-  // 如果当前 fiber 存在父元素, 直接将 DOM 插入到父元素中
-  if (fiber.parent) {
-    fiber.parent.dom.appendChild(fiber.dom);
   }
 
   attachChildToFiber(fiber);
