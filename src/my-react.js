@@ -1,10 +1,5 @@
 function createElement(type, props, ...children) {
 
-  // handle functional component
-  if (typeof type === "function") {
-    return type(props);
-  }
-  
   return {
     type,
     props: {
