@@ -2,14 +2,23 @@
 import MyReact from "./my-react";
 import MyReactDom from "./my-react-dom";
 
+
+const container = document.getElementById("root")
 const Greeting = ({ name }) => <p>Welcome {name}!</p>;
 
-const App = (
-  <div>
-    <h1 className="primary">MyReact</h1>
-    <p>It is about building my own React</p>
-    <Greeting name="aaa" />
-  </div>
-);
+const updateValue = e => {
+  rerender(e.target.value)
+}
 
-MyReactDom.render(App, document.getElementById("root"));
+const rerender = value => {
+  const App = (
+    <div>
+      <input onInput={updateValue} value={value} />
+      <h2>Hello {value}</h2>
+      <Greeting name="hahaha" />
+    </div>
+  )
+  MyReactDom.render(App, container)
+}
+
+rerender("World")
