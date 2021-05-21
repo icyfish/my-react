@@ -1,3 +1,3 @@
 ## Implement My React
 
-[90行代码实现React](https://www.notion.so/90-React-361f5125b8a44569819a110ff9f0b5db)
+[实现自己的 React](https://www.notion.so/byzhang/React-43b3bec3e45c47caa222a8962c9888a0)
