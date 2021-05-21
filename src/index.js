@@ -1,24 +1,23 @@
 // MyReact needs to be in scope for JSX to work
 import MyReact from "./my-react";
-import MyReactDom from "./my-react-dom";
 
-
-const container = document.getElementById("root")
-const Greeting = ({ name }) => <p>Welcome {name}!</p>;
-
-const updateValue = e => {
-  rerender(e.target.value)
+function Counter() {
+  const [state, setState] = MyReact.useState(1);
+  return <h1 onClick={() => setState((c) => c + 1)}>Count: {state}</h1>;
 }
 
-const rerender = value => {
-  const App = (
+const posts = ["post1", "post2", "post3"];
+const App = (
+  <div>
     <div>
-      <input onInput={updateValue} value={value} />
-      <h2>Hello {value}</h2>
-      <Greeting name="hahaha" />
+      {posts.map((post) => (
+        <p>{post}</p>
+      ))}
     </div>
-  )
-  MyReactDom.render(App, container)
-}
+    <Counter />
+  </div>
+);
 
-rerender("World")
+const container = document.getElementById("root");
+
+MyReact.render(App, container);
